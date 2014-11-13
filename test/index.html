@@ -16,6 +16,7 @@
         <link rel="import" href="bower_components/paper-slider/paper-slider.html">
         <link rel="import" href="bower_components/paper-toast/paper-toast.html">
         <link rel="import" href="bower_components/paper-fab/paper-fab.html">
+        <link rel="import" href="elements/item-order.html">
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <style>
@@ -66,9 +67,7 @@
                 right: 20px; 
                 bottom: 20px;
             }
-            #add_button {
-                background: green;
-            }
+            
         </style>
     </head>
     <body unresolved ng-controller="Controller as ctrl">
@@ -81,34 +80,35 @@
                 </core-menu>
             </core-header-panel>
             <div tool>Test Project</div>
-            <paper-dialog heading="Onions" transition="paper-dialog-transition-bottom">
-              <p>Rate: Rs 25/Kg</p>
-              <table>
-                <tr>
-                  <td>
-                    Quantity:
-                  </td>
-                  <td>
-                    <paper-slider pin min="0" snaps step="0.25" max="3.0" value="1.0" editable ng-model="ctrl.quantity"></paper-slider>    
-                  </td>
-                  <td>
-                    Kg
-                  </td>
-                </tr>
-              </table>
-              <table>
-                <tr>
-                  <td>
-                    Price:
-                  </td>
-                  <td>
-                    <span>Rs {{ctrl.quantity*25}}</span>   
-                  </td>
-                </tr>
-              </table>
-              <paper-button label="Cancel" raised dismissive></paper-button>
-              <paper-button label="Add to order" id="add_button" raised affirmative autofocus></paper-button>
-            </paper-dialog>
+            <item-order></item-order>
+            <!--<paper-dialog heading="Onions" transition="paper-dialog-transition-bottom">-->
+            <!--  <p>Rate: Rs 25/Kg</p>-->
+            <!--  <table>-->
+            <!--    <tr>-->
+            <!--      <td>-->
+            <!--        Quantity:-->
+            <!--      </td>-->
+            <!--      <td>-->
+            <!--        <paper-slider pin min="0" snaps step="0.25" max="3.0" value="1.0" editable ng-model="ctrl.quantity"></paper-slider>    -->
+            <!--      </td>-->
+            <!--      <td>-->
+            <!--        Kg-->
+            <!--      </td>-->
+            <!--    </tr>-->
+            <!--  </table>-->
+            <!--  <table>-->
+            <!--    <tr>-->
+            <!--      <td>-->
+            <!--        Price:-->
+            <!--      </td>-->
+            <!--      <td>-->
+            <!--        <span>Rs {{ctrl.quantity*25}}</span>   -->
+            <!--      </td>-->
+            <!--    </tr>-->
+            <!--  </table>-->
+            <!--  <paper-button label="Cancel" raised dismissive></paper-button>-->
+            <!--  <paper-button label="Add to order" id="add_button" raised affirmative autofocus></paper-button>-->
+            <!--</paper-dialog>-->
             <!--<core-card class="core_card" vertical layout start z="2">-->
             <!--    <div style="padding: 20px;">This is a sample project.  Please share my blog if you've found this useful</div>-->
             <!--</core-card>-->
@@ -152,12 +152,11 @@
       <script>
         angular.module('example', ['ng-polymer-elements'])
                 .controller('Controller', function() {
-                    this.quantity = 1.0;
                 });
     </script>
       <script>
           function toggleDialog(transition) {
-            var dialog = document.querySelector('paper-dialog[transition=' + transition + ']');
+            var dialog = document.querySelector('item-order');
             dialog.toggle();
           }
         </script>
