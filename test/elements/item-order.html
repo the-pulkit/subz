@@ -1,0 +1,65 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog-transition.html">
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
+
+<polymer-element name="item-order">
+  <template>
+    <style>
+      #add_button {
+        background: green;
+      }
+    </style>
+    <paper-dialog id="dialog" heading="Onions" layered transition="paper-dialog-transition-bottom">
+      <p>Rate: Rs 25/Kg</p>
+      <table>
+        <tr>
+          <td>
+            Quantity:
+          </td>
+          <td>
+            <paper-slider pin min="0" snaps step="0.25" max="3.0" editable value="{{quantity}}"></paper-slider>    
+          </td>
+          <td>
+            Kg
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            Price:
+          </td>
+          <td>
+            <span>Rs {{quantity*25}}</span>   
+          </td>
+        </tr>
+      </table>
+      <paper-button label="Cancel" raised dismissive></paper-button>
+      <paper-button label="Add to order" id="add_button" raised affirmative autofocus style="background: green"></paper-button>
+    </paper-dialog>
+  </template>
+  <script>
+    Polymer('item-order', {
+      
+      /**
+       * Sets the initial quantity for the contained slider.
+
+       * @attribute quantity
+       * @type float
+       * @default false
+       */
+      quantity: 1.0,
+      
+      
+      /**
+       * Toggle the dialog's opened state.
+       * @method toggle
+       */
+      toggle: function() {
+        this.$.dialog.toggle();
+      },
+    });
+  </script>
+</polymer-element>
