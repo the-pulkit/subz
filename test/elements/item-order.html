@@ -4,14 +4,14 @@
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog-transition.html">
 <link rel="import" href="../bower_components/paper-slider/paper-slider.html">
 
-<polymer-element name="item-order">
+<polymer-element name="item-order" attributes="item">
   <template>
     <style>
       #add_button {
-        background: green;
+        background: blue;
       }
     </style>
-    <paper-dialog id="dialog" heading="Onions" layered transition="paper-dialog-transition-bottom">
+    <paper-dialog id="dialog" heading="{{item}}" layered transition="paper-dialog-transition-bottom">
       <p>Rate: Rs 25/Kg</p>
       <table>
         <tr>
@@ -36,8 +36,8 @@
           </td>
         </tr>
       </table>
-      <paper-button label="Cancel" raised dismissive></paper-button>
-      <paper-button label="Add to order" id="add_button" raised affirmative autofocus style="background: green"></paper-button>
+      <paper-button raised dismissive>Cancel</paper-button>
+      <paper-button id="add_button" raised affirmative autofocus style="background: green" on-click="{{onClick}}">Add to order</paper-button>
     </paper-dialog>
   </template>
   <script>
@@ -59,7 +59,12 @@
        */
       toggle: function() {
         this.$.dialog.toggle();
+        this.quantity = 1.0;
       },
+      
+      onClick: function() {
+        this.fire('addItem', {item: this.item, 'quantity': this.quantity}); // fire(type, detail, targetNode, bubbles?, cancelable?)
+      }
     });
   </script>
 </polymer-element>
